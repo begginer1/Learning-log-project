@@ -1,0 +1,127 @@
+command :python -m venv ll_env 
+creating virtual a environment
+venv is for virtual environment
+ll_env is the name of virtual environment
+
+command: ll_env\Scripts\activate
+This command runs the script activate in ll_env/Scripts/. When the environment is active, you’ll see the name of the environment in parentheses. This 
+indicates that you can install new packages to the environment and use 
+packages that have already been installed. Packages you install in ll_env will 
+not be available when the environment is inactive
+
+command: deactivate
+To stop using a virtual environment, enter deactivate.
+The environment will also become inactive when you close the terminal 
+it’s running in.
+
+command:pip install Django
+so the command to install 
+Django is the same on all systems. There’s no need to use longer commands, such as python -m pip install package_name, or to include the --user
+flag. Keep in mind that Django will be available only when the ll_env environment is active.
+
+command: django-admin startproject ll_project .
+The startproject command tells Django to set up a new project called 
+ll_project. The dot (.) at the end of the command creates the new project 
+with a directory structure that will make it easy to deploy the app to a server 
+when we’re finished developing it.
+
+The ll_project directory contains four files 3; the most important are 
+settings.py, urls.py, and wsgi.pyThe settings.py file controls how Django interacts with your system and manages your project.
+We’ll modify a few of these settings and add some settings of our own as the project evolves. 
+The urls.pyfile tells Django which pages to build in response to browser requests. 
+The wsgi.py file helps Django serve the files it creates. 
+The filename is an acronym for “web server gateway interface.”
+
+command:  python manage.py migrate
+Anytime we modify a database, we say we’re migrating the database. 
+Issuing the migrate command for the first time tells Django to make sure the 
+database matches the current state of the project. The first time we run this 
+command in a new project using SQLite, 
+Django will create a new database for us. Here, Django reports that it will 
+prepare the database to store information it needs to handle administrative 
+and authentication tasks
+
+SQLite is a database that runs off a single file; it’s ideal for writing simple apps because you won’t have to pay much attention to managing 
+the database.
+
+command: python manage.py runserver
+Let’s make sure that Django has set up the project properly. Enter the 
+runserver command to view the project in its current state
+
+Django should start a server called the development server, so you can 
+view the project on your system to see how well it works. When you request 
+a page by entering a URL in a browser, the Django server responds to that 
+request by building the appropriate page and sending it to the browser.
+
+Django first checks to make sure the project is set up properly 1; it 
+then reports the version of Django in use and the name of the settings file 
+in use 2. Finally, it reports the URL where the project is being served 3. 
+The URL http://127.0.0.1:8000/ or http://localhost:8000/ indicates that the project is listening for 
+requests on port 8000 on your computer, which is called a localhost
+
+To run app
+A Django project is organized as a group of individual apps that work together 
+to make the project work as a whole. 
+step 1: Start the server
+command :  ll_env\Scripts\activate
+
+Step 2: run the app
+command:  python manage.py startapp learning_logs
+The command startapp appname tells Django to create the infrastructure 
+needed to build an app
+
+The date_added attribute is a DateTimeField, a piece of data that will 
+record a date and time 2. We pass the argument auto_now_add=True, which 
+tells Django to automatically set this attribute to the current date and time 
+whenever the user creates a new topic.
+
+command: python manage.py makemigrations learning_logs
+The command makemigrations tells Django to figure out how to modify 
+the database so it can store the data associated with any new models(class) we’ve 
+defined
+
+Whenever we want to modify the data that Learning Log manages, we’ll 
+follow these three steps: modify models.py, call makemigrations on learning_logs, 
+and tell Django to migrate the project.
+
+ command: python manage.py createsuperuser
+ to make super user
+
+ command: python manage.py shell
+ The command python manage.py shell, run in an active virtual environment, 
+ launches a Python interpreter that you can use to explore the data 
+stored in your project’s database.
+
+To create a webpage
+Making web pages with Django consists of three stages: defining URLs, 
+writing views, and writing templates
+step 1: defining urls 
+Making web pages with Django consists of three stages: defining URLs, 
+writing views, and writing templates
+In the main ll_project folder, open the file urls.py, the urlpatterns variable 
+includes sets of URLs from the apps in the project. The list includes the 
+module admin.site.urls, which defines all the URLs that can be requested 
+from the admin site
+The default urls.py is in the ll_project folder; now we need to make a second urls.py file in the learning_logs folder. Create a new Python file, save it as 
+urls.py in learning_logs,
+
+
+
+step 2:define views
+Each URL then maps to a particular view. The view function retrieves 
+and processes the data needed for that page. The view function often renders the page using a template, which contains the overall structure of the 
+page
+
+
+step 3
+The template defines what the page should look like, and Django fills in 
+the relevant data each time the page is requested. A template allows you to 
+Getting Started with Django   391
+access any data provided by the view.
+
+
+The code in @login_required checks whether a user is logged in, and 
+Django runs the code in topics() only if they are. If the user isn’t logged in, 
+they’re redirected to the login page.
+To make this redirect work, we need to modify settings.py so Django knows 
+where to find the login page. Add the following at the end of settings.py:
