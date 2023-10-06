@@ -125,3 +125,17 @@ Django runs the code in topics() only if they are. If the user isn’t logged in
 they’re redirected to the login page.
 To make this redirect work, we need to modify settings.py so Django knows 
 where to find the login page. Add the following at the end of settings.py:
+
+For Adding Bootstarp5 
+{% load django_bootstrap5 %}
+ {% bootstrap_css %}
+ {% bootstrap_javascript %}
+
+If you want to use custom template tags from 
+django-bootstrap5, each template will need to include the {% load django
+_bootstrap5 %} tag.
+
+The template tag {% bootstrap_css %} is a 
+custom tag from django-bootstrap5; it loads all of the CSS files required to 
+implement Bootstrap styles. The tag that follows enables all the interactive 
+behavior you might use on a page, such as collapsible navigation bars. 
